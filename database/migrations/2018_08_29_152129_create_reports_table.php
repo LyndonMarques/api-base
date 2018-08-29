@@ -18,7 +18,7 @@ class CreateReportsTable extends Migration
             $table->unsignedInteger('base_category_id');
             $table->foreign('base_category_id')->references('id')->on('base_categories');
             $table->string('name');
-            $table->text('file')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
