@@ -11,6 +11,6 @@ class ServiceCategory extends BaseCategory
 
   public function quotation()
   {
-    return $this->hasMany('App/Quotation');
+    return $this->hasMany('App\Quotation');
   }
 }

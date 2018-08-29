@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
   public function category()
-  {
-    return $this->belongsTo('App/ReportCategory');
-  }
+    {
+        return $this->belongsTo('App\ReportCategory', 'base_category_id');
+    }
 }

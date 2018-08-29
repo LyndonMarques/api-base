@@ -28,11 +28,11 @@ class Quotation extends Model
 
     public function user()
     {
-      return $this->belongsTo('App/User');
+      return $this->belongsTo('App\User');
     }
 
     public function category()
     {
-      return $this->belongsTo('App/ServiceCategory');
+      return $this->belongsTo('App\ServiceCategory', 'base_category_id');
     }
 }
