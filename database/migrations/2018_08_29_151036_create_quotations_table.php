@@ -22,6 +22,7 @@ class CreateQuotationsTable extends Migration
             $table->text('event');
             $table->text('guest');
             $table->text('quoted_items');
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }
