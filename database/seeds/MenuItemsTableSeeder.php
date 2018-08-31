@@ -181,7 +181,7 @@ class MenuItemsTableSeeder extends Seeder
             array (
                 'id' => 11,
                 'menu_id' => 1,
-                'title' => 'Quotations',
+                'title' => 'Orçamentos',
                 'url' => '',
                 'target' => '_self',
                 'icon_class' => 'voyager-dollar',
@@ -189,7 +189,7 @@ class MenuItemsTableSeeder extends Seeder
                 'parent_id' => NULL,
                 'order' => 4,
                 'created_at' => '2018-08-31 18:09:23',
-                'updated_at' => '2018-08-31 18:15:52',
+                'updated_at' => '2018-08-31 19:04:34',
                 'route' => 'voyager.quotations.index',
                 'parameters' => 'null',
             ),
