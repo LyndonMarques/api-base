@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return Redirect::to('http://zodiac.powertravel.com.br');;
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
