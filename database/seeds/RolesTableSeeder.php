@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Role;
+use TCG\Voyager\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -25,6 +25,11 @@ class RolesTableSeeder extends Seeder
         $role = Role::firstOrNew(['name' => 'financial']);
         if (!$role->exists) {
             $role->fill(['display_name' => 'Financeiro'])->save();
+        }
+
+        $role = Role::firstOrNew(['name' => 'power']);
+        if (!$role->exists) {
+            $role->fill(['display_name' => 'Power Travel'])->save();
         }
     }
 }

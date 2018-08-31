@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Role;
+use TCG\Voyager\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,14 +14,24 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       if (User::count() == 0) {
-          $role = Role::where('name', 'admin')->firstOrFail();
+          $admin_role = Role::where('name', 'admin')->firstOrFail();
 
           $user = User::create([
               'name'           => 'Admin',
               'email'          => 'admin@admin.com',
               'password'       => bcrypt('password'),
               'remember_token' => str_random(60),
-              'role_id'        => $role->id
+              'role_id'        => $admin_role->id
+          ]);
+
+          $power_role = Role::where('name', 'power')->firstOrFail();
+
+          $user = User::create([
+              'name'           => 'Power Travel',
+              'email'          => 'contato@powertravel.com.br',
+              'password'       => bcrypt('password'),
+              'remember_token' => str_random(60),
+              'role_id'        => $power_role->id
           ]);
       }
     }
