@@ -16,9 +16,9 @@ class NewQuotation extends Mailable
      *
      * @return void
      */
-    public function __construct(Quotation $quotation)
+    public function __construct($data)
     {
-          $this->quotation = $quotation;
+          $this->quotation = $data;
     }
 
     /**
@@ -28,10 +28,11 @@ class NewQuotation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.quotation.new')
+        return $this->markdown('emails.quotation.new')
+                    ->subject('Novo Orçamento')
                     ->with([
                       'user' => $this->quotation->user,
-                      'order' => $this->order,
+                      'quotation' => $this->quotation,
                     ]);
     }
 }

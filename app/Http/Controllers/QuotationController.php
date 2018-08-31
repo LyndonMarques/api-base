@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\User;
 use App\Quotation;
 use App\ServiceCategory;
+use App\Mail\NewQuotation;
 
 class QuotationController extends Controller
 {
@@ -51,7 +53,12 @@ class QuotationController extends Controller
 
           $quotation->save();
 
-          return response()->json(compact('quotation'), 201);
+          Mail::to('giancarlo@pipedigital.com')->send(new NewQuotation($quotation));
+            if (Mail::failures()) {
+              return response()->json(compact('quotation'), 400);
+            } else {
+              return response()->json(compact('quotation'), 201);
+            }
         }
     }
 
