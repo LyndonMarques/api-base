@@ -33,6 +33,27 @@ class UsersTableSeeder extends Seeder
               'remember_token' => str_random(60),
               'role_id'        => $power_role->id
           ]);
+
+          $trade_role = Role::where('name', 'trade')->firstOrFail();
+
+          $user = User::create([
+              'name'           => 'Zodiac',
+              'email'          => 'trade@powertravel.com.br',
+              'password'       => bcrypt('password'),
+              'remember_token' => str_random(60),
+              'role_id'        => $trade_role->id
+          ]);
+
+
+          $financial_role = Role::where('name', 'financial')->firstOrFail();
+
+          $user = User::create([
+              'name'           => 'Financeiro',
+              'email'          => 'financeiro@powertravel.com.br',
+              'password'       => bcrypt('password'),
+              'remember_token' => str_random(60),
+              'role_id'        => $financial_role->id
+          ]);
       }
     }
 }
