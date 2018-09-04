@@ -19,5 +19,7 @@ Route::post('login', 'UserController@authenticate');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
   Route::get('user', 'UserController@getAuthenticatedUser');
+  Route::get('categories', 'QuotationController@categories');
   Route::post('quotations', 'QuotationController@store');
+  Route::post('contacts', 'ContactController@store');
 });

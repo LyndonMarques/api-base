@@ -9,8 +9,13 @@ class ServiceCategory extends BaseCategory
 {
   protected static $singleTableType = 'service_category';
 
-  public function quotation()
+  public function quotations()
   {
     return $this->hasMany('App\Quotation');
+  }
+
+  public function contacts()
+  {
+    return $this->hasMany('App\Contact');
   }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Contact;
+use App\ServiceCategory;
+use App\Mail\NewContact;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-use App\User;
-use App\Quotation;
-use App\ServiceCategory;
-use App\Mail\NewQuotation;
-
-class QuotationController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,21 +43,20 @@ class QuotationController extends Controller
         $user = User::find($request->input('id'));
 
         if ($user) {
-          $quotation = new Quotation;
-          $quotation->event = $request->input('event');
-          $quotation->guest = $request->input('guest');
-          $quotation->quoted_items = $request->input('quoted_items');
+          $contact = new Contact;
+          $contact->subject = $request->input('subject');
+          $contact->message = $request->input('message');
 
-          $quotation->user()->associate($user);
-          $quotation->category()->associate(ServiceCategory::find(1));
+          $contact->user()->associate($user);
+          $contact->category()->associate(ServiceCategory::find(1));
 
-          $quotation->save();
+          $contact->save();
 
-          Mail::to('giancarlo@pipedigital.com')->send(new NewQuotation($quotation));
+          Mail::to('giancarlo@pipedigital.com')->send(new NewContact($contact));
             if (Mail::failures()) {
-              return response()->json(compact('quotation'), 400);
+              return response()->json(compact('contact'), 400);
             } else {
-              return response()->json(compact('quotation'), 201);
+              return response()->json(compact('contact'), 201);
             }
         }
     }
@@ -105,15 +104,5 @@ class QuotationController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Return all active service categories
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function categories()
-    {
-        return ServiceCategory::all()->sortBy('order');
     }
 }
