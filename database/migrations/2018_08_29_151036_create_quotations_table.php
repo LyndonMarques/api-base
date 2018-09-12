@@ -19,9 +19,8 @@ class CreateQuotationsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('base_category_id');
             $table->foreign('base_category_id')->references('id')->on('base_categories');
-            $table->text('event');
-            $table->text('guest');
-            $table->text('quoted_items');
+            $table->string('type');
+            $table->text('fields');
             $table->string('file')->nullable();
             $table->timestamps();
         });
