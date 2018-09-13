@@ -28,11 +28,18 @@ class NewQuotation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.quotation.new')
-                    ->subject('Novo Orçamento')
-                    ->with([
-                      'user' => $this->quotation->user,
-                      'quotation' => $this->quotation,
-                    ]);
+        if ($this->quotation->type == 'sponsorship') {
+          $this->markdown('emails.quotation.sponsorship');
+        }
+
+        if ($this->quotation->type == 'conference') {
+          $this->markdown('emails.quotation.conference');
+        }
+
+        return $this->subject('Novo Orçamento')
+          ->with([
+            'user' => $this->quotation->user,
+            'quotation' => $this->quotation,
+          ]);
     }
 }

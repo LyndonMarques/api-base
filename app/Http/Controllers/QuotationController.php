@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 use App\User;
-use App\Quotation;
+use App\Sponsorship;
+use App\Conference;
 use App\ServiceCategory;
+
 use App\Mail\NewQuotation;
 
 class QuotationController extends Controller
@@ -41,24 +43,30 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
         $user = User::find($request->input('id'));
-
         if ($user) {
-          $quotation = new Quotation;
-          $quotation->event = $request->input('event');
-          $quotation->guest = $request->input('guest');
-          $quotation->quoted_items = $request->input('quoted_items');
+          $quotation = null;
 
+          if ($request->input('fields.type') == 'sponsorship') {
+            $quotation = new Sponsorship();
+            $quotation->category()->associate(ServiceCategory::find(1));
+          }
+
+          if ($request->input('fields.type') == 'conference') {
+            $quotation = new Conference();
+            $quotation->category()->associate(ServiceCategory::find(2));
+          }
+          $quotation->fields = $request->input('fields');
           $quotation->user()->associate($user);
-          $quotation->category()->associate(ServiceCategory::find(1));
 
           $quotation->save();
-
           Mail::to('giancarlo@pipedigital.com')->send(new NewQuotation($quotation));
             if (Mail::failures()) {
               return response()->json(compact('quotation'), 400);
             } else {
               return response()->json(compact('quotation'), 201);
             }
+        } else {
+          return response()->json(compact('quotation'), 500);
         }
     }
 
