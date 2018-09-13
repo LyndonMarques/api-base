@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eec8de654deb25b5e38a1ac6653389bf",
+    "content-hash": "33ff9f295c73e4f8467d9ad576ddb77d",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -4023,6 +4023,51 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "voyager-bread-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeffochoa/voyager-bread-generator.git",
+                "reference": "master"
+            },
+            "require": {
+                "tcg/voyager": "^1.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "^5.5"
+            },
+            "type": "library",
+            "extra": {
+                "hook": {
+                    "providers": [
+                        "VoyagerBread\\BreadGeneratorServiceProvider"
+                    ]
+                },
+                "laravel": {
+                    "providers": [
+                        "VoyagerBread\\BreadGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "VoyagerBread\\": "src/"
+                }
+            },
+            "notification-url": "https://larapack.io/downloads",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Ochoa",
+                    "email": "jeffer.8a@gmail.com"
+                }
+            ],
+            "description": "Create BREAD from the console using artisan",
+            "time": "2017-10-20T02:25:32+00:00"
         }
     ],
     "packages-dev": [
@@ -5723,7 +5768,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "tymon/jwt-auth": 20
+        "tymon/jwt-auth": 20,
+        "voyager-bread-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

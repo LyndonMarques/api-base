@@ -1,5 +1,5 @@
 @component('mail::message')
-  # Novo contato de {{ $user->name }}
+  # Novo contato de {{ $user->name }} ({{ $user->email }})
 
   ## {{ $contact->category->name }}
 

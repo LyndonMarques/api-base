@@ -52,20 +52,6 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
-
-        $dataType = $this->dataType('slug', 'quotations');
-        if (!$dataType->exists) {
-            $dataType->fill([
-                'name'                  => 'quotations',
-                'display_name_singular' => 'Orçamento',
-                'display_name_plural'   => 'Orçamentos',
-                'icon'                  => 'voyager-dollar',
-                'model_name'            => 'App\\Quotation',
-                'controller'            => '',
-                'generate_permissions'  => 1,
-                'description'           => '',
-            ])->save();
-        }
     }
 
     /**
