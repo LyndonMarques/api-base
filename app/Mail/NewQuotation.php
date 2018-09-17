@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -40,6 +42,7 @@ class NewQuotation extends Mailable
           ->with([
             'user' => $this->quotation->user,
             'quotation' => $this->quotation,
+            'request_date' => Carbon::now()->toDateString()
           ]);
     }
 }

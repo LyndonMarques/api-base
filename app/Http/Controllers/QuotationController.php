@@ -66,7 +66,7 @@ class QuotationController extends Controller
               return response()->json(compact('quotation'), 201);
             }
         } else {
-          return response()->json(compact('quotation'), 500);
+          return response()->json(['user not found'], 500);
         }
     }
 

@@ -4,19 +4,17 @@
   Confira os dados abaixo:
 
   @component('mail::table')
-    | Evento |  |  |  |
-    | ------------- |-------------|-------------|-------------|
+    | | Data de Solicitação | {{ $request_date }} | |
+    | | | | |
     | Evento/Congresso | {{ $quotation->fields['event']['name'] }} | GD | {{ $quotation->fields['event']['gd'] }} |
     | Tipo de Viagem | {{ $quotation->fields['event']['type'] }} | Produto | {{ $quotation->fields['event']['product'] }} |
     | Data de ida | {{ $quotation->fields['event']['departure_date'] }} | Segmentação | {{ $quotation->fields['event']['guest_segmentation'] }} |
     | Data de Retorno | {{ $quotation->fields['event']['return_date'] }} | | |
     | Solicitante | {{ $quotation->fields['event']['requester'] }} | | |
-  @endcomponent
-
-  @component('mail::table')
-    | Convidado | |
-    | ------------- |-------------|
-    @if ($quotation->fields['guest']['sponsorship_type'] == 'onco')
+    | | | | |
+    | Dados do Convidado | | | |
+    | | | | |
+    @if ($quotation->fields['sponsorship_type'] == 'onco')
       | Nome do Médico | {{ $quotation->fields['guest']['name'] }} | Instituição que o médico trabalha | {{ $quotation->fields['guest']['institution'] }} |
     @else
       | Nome do Médico | {{ $quotation->fields['guest']['name'] }} | Sociedade e nro. do Sócio | {{ $quotation->fields['guest']['partner_number'] }} |
