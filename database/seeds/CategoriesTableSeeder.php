@@ -13,19 +13,19 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $service_category = ServiceCategory::firstOrNew(['slug' => 'patrocinio']);
+        $service_category = ServiceCategory::firstOrNew(['slug' => 'sponsorship']);
         if (!$service_category->exists) {
             $service_category->fill([
               'name' => 'Patrocínio',
-              'slug' => 'patrocinio'
+              'slug' => 'sponsorship'
             ])->save();
         }
 
-        $service_category = ServiceCategory::firstOrNew(['slug' => 'eventos']);
+        $service_category = ServiceCategory::firstOrNew(['slug' => 'conference']);
         if (!$service_category->exists) {
             $service_category->fill([
               'name' => 'Congressos/Eventos',
-              'slug' => 'eventos'
+              'slug' => 'conference'
             ])->save();
         }
 

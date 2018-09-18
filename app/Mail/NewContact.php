@@ -11,6 +11,8 @@ class NewContact extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $contact;
+
     /**
      * Create a new message instance.
      *
@@ -29,10 +31,10 @@ class NewContact extends Mailable
     public function build()
     {
         return $this->markdown('emails.contact.new')
-                    ->subject('Novo contato')
-                    ->with([
-                      'user' => $this->contact->user,
-                      'contact' => $this->contact
-                    ]);
+          ->subject('Novo contato')
+          ->with([
+            'user'    => $this->contact->user,
+            'contact' => $this->contact
+          ]);
     }
 }

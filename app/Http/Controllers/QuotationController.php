@@ -45,26 +45,42 @@ class QuotationController extends Controller
         $user = User::find($request->input('id'));
         if ($user) {
           $quotation = null;
-
-          if ($request->input('fields.type') == 'sponsorship') {
+          $type = $request->input('fields.type');
+          if ($type == 'sponsorship') {
+            $mailTo = 'patrocinio@powertravel.com.br';
             $quotation = new Sponsorship();
-            $quotation->category()->associate(ServiceCategory::find(1));
           }
 
-          if ($request->input('fields.type') == 'conference') {
+          if ($type == 'conference') {
+            $mailTo = 'eventos@powertravel.com.br';
             $quotation = new Conference();
-            $quotation->category()->associate(ServiceCategory::find(2));
           }
+
+          // TEMP: development
+          $mailTo = 'giancarlo@pipedigital.com';
+
           $quotation->fields = $request->input('fields');
+
+          $quotation->category()->associate(ServiceCategory::where('slug', $type)->first());
           $quotation->user()->associate($user);
 
           $quotation->save();
-          Mail::to('giancarlo@pipedigital.com')->send(new NewQuotation($quotation));
-            if (Mail::failures()) {
-              return response()->json(compact('quotation'), 400);
-            } else {
-              return response()->json(compact('quotation'), 201);
-            }
+
+          Mail::to($mailTo)->send(new NewQuotation(array(
+            'quotation' => $quotation,
+            'context'   => 'power'
+          )));
+
+          Mail::to($user->email)->send(new NewQuotation([
+            'quotation' => $quotation,
+            'context'   => 'zodiac'
+          ]));
+
+          if (Mail::failures()) {
+            return response()->json(compact('quotation'), 400);
+          } else {
+            return response()->json(compact('quotation'), 201);
+          }
         } else {
           return response()->json(['user not found'], 500);
         }

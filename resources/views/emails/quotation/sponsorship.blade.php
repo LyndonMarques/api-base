@@ -1,7 +1,24 @@
 @component('mail::message')
-  # Novo Orçamento de {{ $quotation->category->name }}
+  @if ($context == 'power')
+    @component('mail::panel')
+      # Bom Dia {{ $user->name }}
+      <p>
+        Tudo bem?<br/>
+        Recebemos a sua solicitação de cotação de {{ $quotation->category->name }}.<br/>
+        Até o dia 10/09 (prazo de 5 dias uteis de retorno da agência) enviaremos os valores para a aprovação.<br/>
+        Confira os dados abaixo:
+      </p>
+    @endcomponent
+  @endif
 
-  Confira os dados abaixo:
+  @if ($context == 'zodiac')
+    @component('mail::panel')
+      # Novo orçamento de {{ $quotation->category->name }}
+      <p>
+        Confira os dados abaixo:
+      </p>
+    @endcomponent
+  @endif
 
   @component('mail::table')
     | | Data de Solicitação | {{ $request_date }} | |
@@ -34,9 +51,20 @@
     | Aéreo | {{ ($quotation->fields['quoted_items']['airfare'] ? 'Sim' : 'Não') }} |
   @endcomponent
 
-  Orçamento gerado online por <b>{{ $user->name }}</b>, envie o orçamento em anexo para o email <{{ $user->email }}>, ou utilize o botão abaixo.
+  @if ($context == 'power')
+    <p>
+      Orçamento gerado online por <b>{{ $user->name }}</b>, envie o orçamento em anexo para o email <{{ $user->email }}>, ou utilize o botão abaixo.
+    </p>
 
-  @component('mail::button', ['url' => "mailto:{$user->email}"])
-    Responder
-  @endcomponent
+    @component('mail::button', ['url' => "mailto:{$user->email}"])
+      Responder
+    @endcomponent
+  @endif
+
+  @if ($context == 'zodiac')
+    <p>
+      Qualquer dúvida estamos à disposição.<br>
+      Att,
+    </p>
+  @endif
 @endcomponent

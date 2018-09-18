@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewQuotation extends Mailable
+class NewQuotation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +18,14 @@ class NewQuotation extends Mailable
      *
      * @return void
      */
+
+    public $quotation;
+    public $context;
+
     public function __construct($data)
     {
-          $this->quotation = $data;
+          $this->quotation = $data['quotation'];
+          $this->context   = $data['context'];
     }
 
     /**
@@ -40,8 +45,9 @@ class NewQuotation extends Mailable
 
         return $this->subject('Novo Orçamento')
           ->with([
-            'user' => $this->quotation->user,
-            'quotation' => $this->quotation,
+            'user'         => $this->quotation->user,
+            'quotation'    => $this->quotation,
+            'context'      => $this->context,
             'request_date' => Carbon::now()->toDateString()
           ]);
     }
