@@ -7,18 +7,16 @@ Tudo bem?
 
 Recebemos a sua solicitação de cotação de {{ $quotation->category->name }}.
 Até o dia 10/09 (prazo de 5 dias uteis de retorno da agência) enviaremos os valores para a aprovação.
-
-Confira os dados abaixo:
 @endcomponent
 @endif
 
 @if ($context == 'zodiac')
 @component('mail::panel')
 # Novo orçamento de {{ $quotation->category->name }}
-
-Confira os dados abaixo:
 @endcomponent
 @endif
+
+Confira os dados abaixo:
 
 @component('mail::table')
 | Cliente |  |
