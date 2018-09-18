@@ -3,7 +3,8 @@
         <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="content-cell" align="center">
-                    {{ Illuminate\Mail\Markdown::parse($slot) }}
+                    Grupo PWR - (11) 3257 9440<br>
+                    <a href="http://www.grupopwr.com.br">grupopwr.com.br</a>
                 </td>
             </tr>
         </table>
