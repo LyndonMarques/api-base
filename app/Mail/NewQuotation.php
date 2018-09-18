@@ -43,7 +43,17 @@ class NewQuotation extends Mailable implements ShouldQueue
           $this->markdown('emails.quotation.conference');
         }
 
-        return $this->subject('Novo Orçamento')
+        $subject = "Novo Orçamento - {$this->quotation->category->name}";
+
+        if ($this->context == 'zodiac' && $this->quotation->type == 'sponsorship') {
+          $subject = "seu pedido foi transmitido para departamento de 'Patrocíonios Zodiac/Grupo Power";
+        }
+
+        if ($this->context == 'zodiac' && $this->quotation->type == 'conference') {
+          $subject = "seu pedido foi transmitido para o Grupo Power";
+        }
+
+        return $this->subject($subject)
           ->with([
             'user'         => $this->quotation->user,
             'quotation'    => $this->quotation,
