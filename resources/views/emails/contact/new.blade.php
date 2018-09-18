@@ -1,9 +1,7 @@
 @component('mail::message')
   # Novo contato de {{ $user->name }} ({{ $user->email }})
 
-  ## {{ $contact->category->name }}
-
-  ### {{ $contact->subject }}
+  ## {{ $contact->subject }}
 
   <p>
     {!! $contact->message !!}

@@ -48,7 +48,6 @@ class ContactController extends Controller
           $contact->message = $request->input('message');
 
           $contact->user()->associate($user);
-          $contact->category()->associate(ServiceCategory::find(1));
 
           $contact->save();
 

@@ -31,5 +31,15 @@ class RolesTableSeeder extends Seeder
         if (!$role->exists) {
             $role->fill(['display_name' => 'Power Travel'])->save();
         }
+
+        $role = Role::firstOrNew(['name' => 'sponsorship']);
+        if (!$role->exists) {
+            $role->fill(['display_name' => 'Patrocínio'])->save();
+        }
+
+        $role = Role::firstOrNew(['name' => 'conference']);
+        if (!$role->exists) {
+            $role->fill(['display_name' => 'Convenção'])->save();
+        }
     }
 }

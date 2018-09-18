@@ -72,8 +72,8 @@ class UserController extends Controller
 
     }
 
-    $role = $user->role->name;
+    $roles = $user->roles->pluck('name');
 
-    return response()->json(compact('user', 'role'));
+    return response()->json(compact('user', 'roles'));
   }
 }
