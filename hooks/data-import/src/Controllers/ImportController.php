@@ -37,7 +37,7 @@ class ImportController extends Controller
           foreach ($data[0] as $key => $value) {
             $header_fields[] = $key;
           }
-          $data = array_slice($data, 1, 101);
+          $data = array_slice($data, 0, 100);
         }
 
         $import_data = ImportData::create([
@@ -79,7 +79,7 @@ class ImportController extends Controller
                 'name'           => ucwords(strtolower($row['name'])),
                 'password'       => bcrypt(preg_replace('/[^0-9.]/', '', $row['cpf']))
               ]);
-              
+
               if ($user->save()) {
                 switch ($row['role']) {
                   case 'trade':
