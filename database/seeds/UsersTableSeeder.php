@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       if (User::count() == 0) {
+          $user_role        = Role::where('name', 'user')->firstOrFail();
           $admin_role       = Role::where('name', 'admin')->firstOrFail();
           $power_role       = Role::where('name', 'power')->firstOrFail();
           $trade_role       = Role::where('name', 'trade')->firstOrFail();
@@ -25,7 +26,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Admin',
               'email'          => 'admin@admin.com',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $admin_role->id
           ]);
           $admin->roles()->sync($admin_role->id);
 
@@ -33,7 +35,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Power Travel',
               'email'          => 'contato@powertravel.com.br',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $user_role->id
           ]);
           $power->roles()->sync([$power_role->id, $sponsorship_role->id, $conference_role->id]);
 
@@ -41,7 +44,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Zodiac',
               'email'          => 'trade@powertravel.com.br',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $user_role->id
           ]);
           $trade->roles()->sync([$trade_role->id, $sponsorship_role->id, $conference_role->id]);
 
@@ -49,7 +53,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Financeiro',
               'email'          => 'financeiro@powertravel.com.br',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $user_role->id
           ]);
           $financial->roles()->sync($financial_role);
 
@@ -57,7 +62,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Patrocinio',
               'email'          => 'patrocinio@powertravel.com.br',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $user_role->id
           ]);
           $sponsorship->roles()->sync([$trade_role->id, $sponsorship_role->id]);
 
@@ -65,7 +71,8 @@ class UsersTableSeeder extends Seeder
               'name'           => 'Eventos',
               'email'          => 'eventos@powertravel.com.br',
               'password'       => bcrypt('password'),
-              'remember_token' => str_random(60)
+              'remember_token' => str_random(60),
+              'role_id'        => $user_role->id
           ]);
           $conference->roles()->sync([$trade_role->id, $conference_role->id]);
       }

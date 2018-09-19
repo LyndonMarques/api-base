@@ -1,0 +1,34 @@
+{
+    "name": "data-import",
+    "description": "This is my first hook.",
+    "require": {
+        "larapack/hooks": "^1.0.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "DataImport\\": "src/"
+        }
+    },
+    "extra": {
+        "hook": {
+            "providers": [
+                "DataImport\\DataImportServiceProvider"
+            ],
+            "aliases": {
+                "DataImport": "DataImport\\DataImportFacade"
+            },
+            "migrations": [
+                "resources/database/migrations"
+            ],
+            "seeders": [
+                "resources/database/seeders"
+            ],
+            "unseeders": [
+                "resources/database/unseeders"
+            ],
+            "assets": {
+                "resources/assets": "public/vendor/data-import"
+            }
+        }
+    }
+}

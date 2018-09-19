@@ -146,6 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Larapack\VoyagerHooks\VoyagerHooksServiceProvider::class,
 
 
         /*
@@ -216,4 +217,8 @@ return [
 
     ],
 
+    'user_fields' => [
+      'name' => 'Nome Completo',
+      'email' => 'E-mail'
+    ],
 ];
