@@ -47,12 +47,12 @@ class QuotationController extends Controller
           $quotation = null;
           $type = $request->input('fields.type');
           if ($type == 'sponsorship') {
-            $mailTo = 'patrocinio@powertravel.com.br';
+            $mailTo = 'patrocinio.zodiac@powertravel.com.br';
             $quotation = new Sponsorship();
           }
 
           if ($type == 'conference') {
-            $mailTo = 'eventos@powertravel.com.br';
+            $mailTo = 'eventos.zodiac@powertravel.com.br';
             $quotation = new Conference();
           }
 
