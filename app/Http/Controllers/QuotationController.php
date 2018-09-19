@@ -56,9 +56,6 @@ class QuotationController extends Controller
             $quotation = new Conference();
           }
 
-          // TEMP: development
-          $mailTo = 'giancarlo@pipedigital.com';
-
           $quotation->fields = $request->input('fields');
 
           $quotation->category()->associate(ServiceCategory::where('slug', $type)->first());

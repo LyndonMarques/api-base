@@ -45,9 +45,9 @@ Confira os dados abaixo:
 @component('mail::table')
 | Itens orçados | |
 | ------------- |-------------|
-| Inscrição | {{ ($quotation->fields['quoted_items']['registration'] ? 'Sim' : 'Não') }} |
-| Hospedagem | {{ ($quotation->fields['quoted_items']['accommodation'] ? 'Sim' : 'Não') }} |
-| Aéreo | {{ ($quotation->fields['quoted_items']['airfare'] ? 'Sim' : 'Não') }} |
+| Inscrição | {{ (in_array("registration", $quotation->fields['quoted_items']) ? 'Sim' : 'Não') }} |
+| Hospedagem | {{ (in_array("accommodation", $quotation->fields['quoted_items']) ? 'Sim' : 'Não') }} |
+| Aéreo | {{ (in_array("airfare", $quotation->fields['quoted_items']) ? 'Sim' : 'Não') }} |
 @endcomponent
 
 @if ($context == 'power')
