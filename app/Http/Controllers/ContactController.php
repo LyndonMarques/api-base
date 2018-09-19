@@ -51,7 +51,7 @@ class ContactController extends Controller
 
           $contact->save();
 
-          Mail::to('giancarlo@pipedigital.com')->send(new NewContact($contact));
+          Mail::to(['patrocinio.zodiac@powertravel.com.br', 'eventos.zodiac@powertravel.com'])->send(new NewContact($contact));
             if (Mail::failures()) {
               return response()->json(compact('contact'), 400);
             } else {

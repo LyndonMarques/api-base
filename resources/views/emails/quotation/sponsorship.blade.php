@@ -39,7 +39,7 @@ Confira os dados abaixo:
 | CPF | {{ $quotation->fields['guest']['cpf'] }} | Telefone Celular | {{ $quotation->fields['guest']['cellphone'] }} |
 | RG | {{ $quotation->fields['guest']['rg'] }} | Telefone Comercial | {{ $quotation->fields['guest']['phone'] }} |
 | Data de Nascimento | {{ $quotation->fields['guest']['birthdate'] }} | E-mail | {{ $quotation->fields['guest']['email'] }} |
-| Nome para crachá | {{ $quotation->fields['guest']['nametag'] }} | Endereço Completo | {{ $quotation->fields['guest']['address'] }} |
+| Nome para crachá | {{ $quotation->fields['guest']['nametag'] }} | Endereço Completo | {{ $quotation->fields['guest']['address'].' '.$quotation->fields['guest']['city'].' '.$quotation->fields['guest']['state'].' '.$quotation->fields['guest']['zipcode'] }} |
 @endcomponent
 
 @component('mail::table')
