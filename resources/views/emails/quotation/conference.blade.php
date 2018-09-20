@@ -6,7 +6,7 @@
 Tudo bem?
 
 Recebemos a sua solicitação de cotação de {{ $quotation->category->name }}.
-Até o dia 10/09 (prazo de 5 dias uteis de retorno da agência) enviaremos os valores para a aprovação.
+Em até 5 dias uteis (prazo de retorno da agência) enviaremos os valores para a aprovação.
 @endcomponent
 @endif
 
