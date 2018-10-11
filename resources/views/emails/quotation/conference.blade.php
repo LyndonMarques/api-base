@@ -1,16 +1,15 @@
 @component('mail::message')
-@if ($context == 'power')
+@if ($context == 'zodiac')
 @component('mail::panel')
 # Bom Dia {{ $user->name }}
 
 Tudo bem?
 
-Recebemos a sua solicitação de cotação de {{ $quotation->category->name }}.
-Em até 5 dias uteis (prazo de retorno da agência) enviaremos os valores para a aprovação.
+Recebemos a sua solicitação de cotação de {{ $quotation->category->name }}, no prazo de 05 dias uteis enviaremos os valores para a aprovação.
 @endcomponent
 @endif
 
-@if ($context == 'zodiac')
+@if ($context == 'power')
 @component('mail::panel')
 # Novo orçamento de {{ $quotation->category->name }}
 @endcomponent
